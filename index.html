@@ -1093,15 +1093,15 @@
 </section>
 
 <!-- FOOTER -->
-<footer>
+<footer style="justify-content:space-between">
   <div class="footer-logo"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839134/IMG_6918_a4ltst_xmpiin.png" alt="Refacciones RG MX" style="height:36px;width:auto;object-fit:contain;opacity:.8"></div>
-  <div class="footer-copy">© 2025 · Automotive Concierge · México</div>
-  <div class="footer-links">
-    <a href="#marcas">Marcas</a>
-    <a href="#concierge">Concierge</a>
-    <a href="#asistente">Cotizar</a>
-    <a href="https://wa.me/528124660778">Contacto</a>
-    <a href="mailto:refaccionesrg@outlook.com">refaccionesrg@outlook.com</a>
+  <div style="display:flex;align-items:center;gap:2rem">
+    <a href="mailto:refaccionesrg@outlook.com" title="refaccionesrg@outlook.com" style="color:var(--white3);transition:color .2s;display:flex;align-items:center" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--white3)'">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+    </a>
+    <a href="https://instagram.com/refaccionesrgmx" target="_blank" title="@refaccionesrgmx" style="color:var(--white3);transition:color .2s;display:flex;align-items:center" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--white3)'">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
   </div>
 </footer>
 
@@ -1223,9 +1223,9 @@
   setTimeout(()=>{
     if(!bubbleDismissed){
       waBubble.classList.add('visible');
-      setTimeout(()=>{ if(!bubbleDismissed) hideBubble(); },6000);
+      setTimeout(()=>{ if(!bubbleDismissed) hideBubble(); },10000);
     }
-  },3000);
+  },30000);
   function hideBubble(){ waBubble.classList.remove('visible'); }
   function dismissBubble(){ bubbleDismissed=true; hideBubble(); }
 
