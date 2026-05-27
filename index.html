@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Refacciones RG MX | Automotive Concierge</title>
+<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779838143/insta_video_27702_izwxf5.mov" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -310,7 +311,7 @@
     .hero-h1{font-size:2.4rem}
     .brands-grid{grid-template-columns:1fr 1fr}
     .benefits-grid{grid-template-columns:1fr}
-    .screenshots-grid{grid-template-columns:1fr}
+    .screenshots-grid{grid-template-columns:1fr 1fr}
     .ai-form-wrap{padding:1.4rem 1rem}
   }
 
@@ -497,6 +498,20 @@
     50%{opacity:1;transform:scale(1.08)}
   }
 
+  /* FAQ MODAL */
+  .faq-item{background:var(--graphite);cursor:pointer;transition:background .3s}
+  .faq-item:hover{background:var(--graphite2)}
+  .faq-q{font-family:var(--font-display);font-size:.95rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--white);padding:1.4rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-left:2px solid transparent;transition:border-color .3s}
+  .faq-item.open .faq-q{border-left-color:var(--red2);color:var(--white)}
+  .faq-icon{font-size:1.4rem;font-weight:300;color:var(--red2);flex-shrink:0;transition:transform .3s;line-height:1}
+  .faq-item.open .faq-icon{transform:rotate(45deg)}
+  .faq-a{font-size:.85rem;color:var(--white2);font-weight:300;line-height:1.8;padding:0 1.5rem 1.4rem;display:none}
+  .faq-item.open .faq-a{display:block}
+  @media(max-width:768px){
+    #faq-modal{padding:.8rem}
+    #faq-panel .faq-content-inner{padding:2rem 1.2rem 2.5rem !important}
+  }
+
 </style>
 </head>
 <body>
@@ -526,11 +541,9 @@
     </div>
     <div class="menu-links">
       <a href="#" onclick="closeMobileMenu();openQuienesSomos(event)">Quiénes Somos</a>
-      <a href="#marcas" onclick="closeMobileMenu()">Marcas</a>
-      <a href="#concierge" onclick="closeMobileMenu()">Concierge</a>
-      <a href="#showcase" onclick="closeMobileMenu()">Casos Recientes</a>
-      <a href="#beneficios" onclick="closeMobileMenu()">Servicios</a>
+      <a href="#showcase" onclick="closeMobileMenu()">Pedidos Recientes</a>
       <a href="#testimonios" onclick="closeMobileMenu()">Clientes</a>
+      <a href="#" onclick="closeMobileMenu();openFAQ(event)">Preguntas Frecuentes</a>
 
     </div>
     <div class="menu-footer">
@@ -651,7 +664,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline class="hero-bg-img" style="object-fit:cover;width:100%;height:100%">
+    <video autoplay muted loop playsinline preload="auto" class="hero-bg-img" style="object-fit:cover;width:100%;height:100%">
       <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779838143/insta_video_27702_izwxf5.mov" type="video/mp4">
     </video>
   </div>
@@ -711,13 +724,13 @@
     <!-- Video -->
     <div class="reveal-right" style="position:relative">
       <div onclick="openVideoModal()" style="position:relative;overflow:hidden;border:1px solid rgba(139,26,26,.3);cursor:pointer">
-        <video autoplay muted loop playsinline style="width:100%;display:block;object-fit:cover;max-height:560px">
+        <video preload="metadata" playsinline style="width:100%;display:block;object-fit:cover;max-height:560px">
           <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779847029/insta_video_91374_rxnifg.mov" type="video/mp4">
         </video>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.4),transparent 60%);pointer-events:none"></div>
+        <div style="position:absolute;inset:0;background:rgba(5,5,5,.25);pointer-events:none"></div>
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
-          <div style="width:64px;height:64px;border-radius:50%;background:rgba(139,26,26,.85);border:2px solid var(--red2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px"><path d="M8 5v14l11-7z"/></svg>
+          <div style="width:72px;height:72px;border-radius:50%;background:rgba(139,26,26,.9);border:2px solid var(--red2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);box-shadow:0 0 30px rgba(139,26,26,.5)">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="white" style="margin-left:4px"><path d="M8 5v14l11-7z"/></svg>
           </div>
         </div>
       </div>
@@ -786,7 +799,7 @@
 
 <!-- SHOWCASE -->
 <section id="showcase">
-  <div class="section-label reveal">Casos Recientes</div>
+  <div class="section-label reveal">Pedidos Recientes</div>
   <h2 class="section-title reveal">Piezas que hemos<br>localizado</h2>
   <div class="showcase-grid reveal" style="grid-template-columns:repeat(4,1fr)">
 
@@ -977,7 +990,12 @@
 </section>
 
 <!-- BENEFICIOS -->
-<section id="beneficios">
+<section id="beneficios" style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0">
+    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779841318/IMG_6932_dgozo2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(30%) contrast(1.1)">
+    <div style="position:absolute;inset:0;background:rgba(13,13,13,.92)"></div>
+  </div>
+  <div style="position:relative;z-index:1">
   <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:0;flex-wrap:wrap;gap:2rem">
     <div>
       <div class="section-label reveal">Por qué elegirnos</div>
@@ -1021,6 +1039,7 @@
       <p class="benefit-text">Validación técnica de cada pieza antes de cotizar. Cero errores de compatibilidad.</p>
       <div class="benefit-line"></div>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1080,6 +1099,69 @@
     <a href="https://wa.me/521234567890">Contacto</a>
   </div>
 </footer>
+
+<!-- MODAL PREGUNTAS FRECUENTES -->
+<div id="faq-modal" style="display:none;position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;padding:1.5rem">
+  <div onclick="closeFAQ()" style="position:absolute;inset:0;background:rgba(5,5,5,.85);backdrop-filter:blur(8px)"></div>
+
+  <!-- Botón cerrar — fuera del panel -->
+  <button onclick="closeFAQ()" style="position:absolute;top:1.2rem;right:1.2rem;z-index:10;background:transparent;border:1px solid rgba(255,255,255,.2);cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--white3);font-size:1.3rem;line-height:1;transition:all .2s" onmouseover="this.style.color='var(--white)';this.style.borderColor='rgba(139,26,26,.6)'" onmouseout="this.style.color='var(--white3)';this.style.borderColor='rgba(255,255,255,.2)'">&times;</button>
+
+  <!-- Panel -->
+  <div id="faq-panel" style="position:relative;z-index:1;width:100%;max-width:800px;max-height:90vh;overflow-y:auto;background:var(--graphite);border:1px solid rgba(139,26,26,.35);transform:translateY(30px);opacity:0;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .45s">
+
+    <!-- Fondo -->
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden">
+      <div style="position:absolute;inset:0;background:var(--graphite)"></div>
+      <div style="position:absolute;top:0;left:2.5rem;right:2.5rem;height:2px;background:linear-gradient(to right,transparent,var(--red),transparent)"></div>
+    </div>
+
+    <!-- Contenido -->
+    <div style="position:relative;z-index:2;padding:3.5rem 4rem 4rem">
+      <div class="section-label">Soporte</div>
+      <h2 class="section-title" style="margin-bottom:2.5rem">Preguntas<br><span style="color:var(--red2)">Frecuentes</span></h2>
+
+      <div style="display:flex;flex-direction:column;gap:1px;background:rgba(139,26,26,.15)">
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Trabajan con cualquier marca de auto?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Sí. Trabajamos con todas las marcas del mercado: desde vehículos premium y exóticos como Porsche, Ferrari o Lamborghini, hasta marcas más comunes. Si la pieza existe, la localizamos.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Cómo hago una solicitud?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Completás el formulario en la sección "Solicitar Cotización" con los datos de tu vehículo y la pieza que necesitás. Un especialista te contacta vía WhatsApp en menos de 2 horas con la cotización.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Las piezas son originales?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Trabajamos únicamente con piezas OEM y originales de proveedores certificados. Nunca te ofrecemos una alternativa de menor calidad sin avisarte primero.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Cuánto tiempo tarda la entrega?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Depende de la pieza y su origen. Piezas locales pueden entregarse en días; importaciones desde Europa, EE.UU. o Japón suelen tomar entre 1 y 3 semanas. Siempre te informamos el tiempo estimado antes de confirmar.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Tienen cobertura en todo México?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Sí, operamos a nivel nacional. Coordinamos el envío a cualquier ciudad de la República Mexicana.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Qué pasa si no encuentran la pieza?<span class="faq-icon">+</span></div>
+          <div class="faq-a">En caso de no poder localizar la pieza, te lo comunicamos de inmediato y sin costo. No cobramos por la búsqueda si no hay resultado.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFAQ(this)">
+          <div class="faq-q">¿Puedo cotizar sin compromiso?<span class="faq-icon">+</span></div>
+          <div class="faq-a">Totalmente. La cotización es gratuita y sin compromiso. Solo confirmas si decidís avanzar con la compra.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- WHATSAPP PREMIUM -->
 <div class="wa-wrap">
@@ -1205,6 +1287,35 @@
     document.body.style.overflow='';
   }
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideoModal()});
+
+  // Modal FAQ
+  function openFAQ(e){
+    if(e) e.preventDefault();
+    const modal=document.getElementById('faq-modal');
+    const panel=document.getElementById('faq-panel');
+    modal.style.display='flex';
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(()=>{
+      panel.style.transform='translateY(0)';
+      panel.style.opacity='1';
+    });
+  }
+  function closeFAQ(){
+    const modal=document.getElementById('faq-modal');
+    const panel=document.getElementById('faq-panel');
+    panel.style.transform='translateY(30px)';
+    panel.style.opacity='0';
+    setTimeout(()=>{
+      modal.style.display='none';
+      document.body.style.overflow='';
+    },420);
+  }
+  function toggleFAQ(item){
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeFAQ()});
 
   // Modal Quiénes Somos
   function openQuienesSomos(e){
