@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refacciones RG MX | Automotive Concierge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --black:#050505;
+    --graphite:#0d0d0d;
+    --graphite2:#1a1a1a;
+    --graphite3:#252525;
+    --graphite4:#333;
+    --red:#8b1a1a;
+    --red2:#a82020;
+    --red3:#c0392b;
+    --white:#f5f5f0;
+    --white2:#d0cfc8;
+    --white3:#9a9990;
+    --gold:#c9a84c;
+    --font-display:'Barlow Condensed',sans-serif;
+    --font-body:'Barlow',sans-serif;
+    --font-serif:'Cormorant Garamond',serif;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:var(--font-body);overflow-x:hidden;line-height:1.6}
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:var(--black)}
+  ::-webkit-scrollbar-thumb{background:var(--red)}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;height:72px;transition:background .4s,border-color .4s,transform .35s cubic-bezier(.4,0,.2,1);border-bottom:1px solid transparent}
+  nav.nav-hidden{transform:translateY(-100%)}
+  nav.scrolled{background:rgba(5,5,5,.95);backdrop-filter:blur(20px);border-color:rgba(139,26,26,.3)}
+  .nav-logo{font-family:var(--font-display);font-weight:700;font-size:1.1rem;letter-spacing:.2em;color:var(--white);text-decoration:none;display:flex;align-items:center;gap:12px}
+  .nav-logo-accent{color:var(--red2);font-size:.65em;letter-spacing:.4em;display:block;font-weight:400}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-hamburger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:10px}
+  .nav-hamburger span{width:28px;height:1px;background:var(--white);transition:all .35s cubic-bezier(.4,0,.2,1);display:block}
+
+  /* HERO */
+  #hero{position:relative;height:100vh;min-height:700px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg-img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(105deg,rgba(5,5,5,.92) 40%,rgba(5,5,5,.6) 70%,rgba(5,5,5,.3) 100%)}
+  .hero-overlay2{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,1) 0%,transparent 40%)}
+  .hero-content{position:relative;z-index:2;padding:0 10vw;max-width:900px}
+  .hero-label{font-family:var(--font-display);font-size:.7rem;letter-spacing:.5em;color:var(--red2);text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+  .hero-label::before{content:'';display:block;width:40px;height:1px;background:var(--red2)}
+  .hero-h1{font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);font-weight:800;line-height:.95;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:1.5rem}
+  .hero-h1 em{font-style:normal;color:var(--red2)}
+  .hero-sub{font-family:var(--font-body);font-size:clamp(.95rem,1.5vw,1.1rem);color:var(--white2);max-width:520px;margin-bottom:3rem;font-weight:300;line-height:1.8;letter-spacing:.02em}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+  .btn-primary{background:var(--red);color:var(--white);padding:.9rem 2.5rem;font-family:var(--font-display);font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;border:1px solid var(--red2);transition:all .3s;display:inline-block}
+  .btn-primary:hover{background:var(--red2);transform:translateY(-2px)}
+  .btn-outline{background:transparent;color:var(--white);padding:.9rem 2.5rem;font-family:var(--font-display);font-size:.85rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(245,245,240,.3);transition:all .3s;display:inline-block}
+  .btn-outline:hover{border-color:var(--white);transform:translateY(-2px)}
+  .hero-badges{display:flex;gap:2rem;flex-wrap:wrap}
+  .hero-badge{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-size:.75rem;letter-spacing:.15em;color:var(--white2);text-transform:uppercase}
+  .hero-badge-dot{width:6px;height:6px;background:var(--red2);flex-shrink:0}
+  .hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2}
+  .hero-scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--red2),transparent);animation:scrollPulse 2s ease-in-out infinite}
+  .hero-scroll-text{font-family:var(--font-display);font-size:.6rem;letter-spacing:.4em;color:var(--white3);text-transform:uppercase}
+  @keyframes scrollPulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+  /* SECTIONS */
+  section{padding:7rem 10vw}
+  .section-label{font-family:var(--font-display);font-size:.65rem;letter-spacing:.5em;color:var(--red2);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+  .section-label::before{content:'';display:block;width:30px;height:1px;background:var(--red2)}
+  .section-title{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,4rem);font-weight:700;text-transform:uppercase;line-height:1;margin-bottom:1.5rem;letter-spacing:.02em}
+  .section-sub{font-size:1rem;color:var(--white2);max-width:560px;font-weight:300;line-height:1.8}
+  .divider{width:60px;height:1px;background:var(--red);margin:2.5rem 0}
+
+  /* MARCAS */
+  #marcas{background:var(--graphite);border-top:1px solid rgba(139,26,26,.2)}
+  .marcas-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem}
+  .brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(139,26,26,.15)}
+  .brand-card{background:var(--graphite);padding:2.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;transition:background .3s,transform .3s;cursor:default;text-align:center}
+  .brand-card:hover{background:var(--graphite2)}
+  .brand-icon{width:56px;height:56px;border-radius:50%;border:1px solid rgba(139,26,26,.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--red2);letter-spacing:.05em;transition:all .3s}
+  .brand-card:hover .brand-icon{border-color:var(--red2);background:rgba(139,26,26,.1)}
+  .brand-name{font-family:var(--font-display);font-size:.9rem;letter-spacing:.3em;color:var(--white2);text-transform:uppercase;font-weight:500}
+  .brand-sub{font-size:.7rem;color:var(--white3);letter-spacing:.1em}
+
+  /* CONCIERGE */
+  #concierge{background:var(--black)}
+  .concierge-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .concierge-visual{position:relative}
+  .concierge-img-wrap{position:relative;overflow:hidden}
+  .concierge-img-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,26,26,.2),transparent);z-index:1}
+  .concierge-img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(30%) contrast(1.1)}
+  .concierge-accent{position:absolute;bottom:-20px;right:-20px;width:120px;height:120px;border:1px solid var(--red);display:flex;align-items:center;justify-content:center;background:var(--black);z-index:2}
+  .concierge-num{font-family:var(--font-display);font-size:3rem;font-weight:700;color:var(--red2);line-height:1}
+  .concierge-num-label{font-family:var(--font-display);font-size:.55rem;letter-spacing:.3em;color:var(--white3);text-transform:uppercase}
+  .concierge-cards{display:grid;gap:1px;background:rgba(255,255,255,.05);margin-top:3rem}
+  .concierge-card{background:var(--black);padding:1.5rem 1.5rem;border-left:2px solid var(--red);transition:background .3s}
+  .concierge-card:hover{background:var(--graphite2)}
+  .cc-num{font-family:var(--font-display);font-size:.65rem;letter-spacing:.3em;color:var(--red2);margin-bottom:.5rem}
+  .cc-title{font-family:var(--font-display);font-size:1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:.3rem}
+  .cc-sub{font-size:.8rem;color:var(--white3);font-weight:300}
+
+  /* SHOWCASE */
+  #showcase{background:var(--graphite);border-top:1px solid rgba(139,26,26,.2)}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(139,26,26,.15);margin-top:4rem}
+  .showcase-card{background:var(--graphite);position:relative;overflow:hidden;cursor:default}
+  .showcase-card:hover .sc-img{transform:scale(1.05);filter:grayscale(0%)}
+  .sc-img-wrap{aspect-ratio:3/4;overflow:hidden;position:relative}
+  .sc-img{width:100%;height:100%;object-fit:cover;filter:grayscale(40%) contrast(1.1);transition:transform .6s,filter .6s}
+  .sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.95) 30%,transparent 70%)}
+  .sc-content{position:absolute;bottom:0;left:0;right:0;padding:2rem 1.5rem}
+  .sc-tag{font-family:var(--font-display);font-size:.6rem;letter-spacing:.4em;color:var(--red2);text-transform:uppercase;margin-bottom:.5rem}
+  .sc-model{font-family:var(--font-display);font-size:1.5rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;line-height:1}
+  .sc-part{font-size:.8rem;color:var(--white2);font-weight:300;margin-top:.3rem}
+  .sc-year{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--font-display);font-size:.7rem;letter-spacing:.2em;color:var(--white3);background:rgba(5,5,5,.6);padding:.3rem .8rem;border:1px solid rgba(255,255,255,.1)}
+
+  /* AI FORM */
+  #asistente{background:var(--black);border-top:1px solid rgba(139,26,26,.2)}
+  .ai-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center}
+  .ai-form-wrap{background:var(--graphite);border:1px solid rgba(139,26,26,.3);padding:3rem;position:relative}
+  .ai-form-wrap::before{content:'';position:absolute;top:-1px;left:2rem;right:2rem;height:2px;background:var(--red)}
+  .ai-form-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+  .ai-dot{width:8px;height:8px;border-radius:50%;background:var(--red2);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+  .ai-dot-label{font-family:var(--font-display);font-size:.7rem;letter-spacing:.3em;color:var(--white3);text-transform:uppercase}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+  .form-field{display:flex;flex-direction:column;gap:.4rem}
+  .form-field.full{grid-column:1/-1}
+  .form-label{font-family:var(--font-display);font-size:.65rem;letter-spacing:.25em;color:var(--white3);text-transform:uppercase}
+  .form-input,.form-select,.form-textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:.7rem 1rem;font-family:var(--font-body);font-size:.85rem;width:100%;transition:border-color .3s;outline:none}
+  .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--red2);background:rgba(139,26,26,.06)}
+  .form-select{cursor:pointer}
+  .form-select option{background:var(--graphite2);color:var(--white)}
+  .form-textarea{height:90px;resize:vertical}
+  .urgency-row{display:flex;gap:.5rem;margin-bottom:1.5rem}
+  .urgency-btn{flex:1;padding:.5rem;background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--white3);font-family:var(--font-display);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+  .urgency-btn.active,.urgency-btn:hover{border-color:var(--red2);color:var(--white);background:rgba(139,26,26,.15)}
+  .btn-submit{width:100%;background:var(--red);color:var(--white);padding:1rem;font-family:var(--font-display);font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;border:none;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+  .btn-submit:hover{background:var(--red2)}
+  .btn-submit::after{content:'→';margin-left:1rem}
+
+  /* BENEFICIOS */
+  #beneficios{background:var(--graphite);border-top:1px solid rgba(139,26,26,.2)}
+  .benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(139,26,26,.15);margin-top:4rem}
+  .benefit-card{background:var(--graphite);padding:2.5rem 2rem;transition:background .3s}
+  .benefit-card:hover{background:var(--graphite2)}
+  .benefit-num{font-family:var(--font-display);font-size:.6rem;letter-spacing:.4em;color:var(--red);margin-bottom:1.2rem;display:block}
+  .benefit-title{font-family:var(--font-display);font-size:1.2rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.6rem}
+  .benefit-text{font-size:.82rem;color:var(--white3);font-weight:300;line-height:1.7}
+  .benefit-line{width:30px;height:1px;background:var(--red);margin-top:1.5rem}
+
+  /* TESTIMONIOS */
+  #testimonios{background:var(--black)}
+  .screenshots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(139,26,26,.12);align-items:start}
+  .testimonial-card{background:var(--black);padding:2.5rem;border-top:2px solid var(--red)}
+  .testimonial-quote{font-family:var(--font-serif);font-size:1.05rem;font-weight:400;font-style:italic;line-height:1.8;color:var(--white2);margin-bottom:2rem}
+  .testimonial-meta{display:flex;align-items:center;gap:1rem}
+  .t-avatar{width:40px;height:40px;border-radius:50%;background:var(--graphite3);border:1px solid rgba(139,26,26,.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.75rem;font-weight:600;color:var(--red2)}
+  .t-name{font-family:var(--font-display);font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
+  .t-car{font-size:.75rem;color:var(--red2);font-weight:300;font-family:var(--font-display);letter-spacing:.1em}
+  .t-stars{font-size:.7rem;color:var(--red2);letter-spacing:.1em;margin-bottom:.2rem}
+
+  /* CTA FINAL */
+  #cta{background:var(--graphite);border-top:1px solid rgba(139,26,26,.3);text-align:center;padding:8rem 10vw;position:relative;overflow:hidden}
+  #cta::before{content:'RG';position:absolute;font-family:var(--font-display);font-size:30vw;font-weight:800;color:rgba(255,255,255,.02);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;line-height:1;letter-spacing:-.05em}
+  .cta-label{font-family:var(--font-display);font-size:.7rem;letter-spacing:.5em;color:var(--red2);text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:1rem}
+  .cta-label::before,.cta-label::after{content:'';display:block;width:40px;height:1px;background:var(--red2)}
+  .cta-title{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:800;text-transform:uppercase;line-height:.95;letter-spacing:.02em;margin-bottom:1.5rem}
+  .cta-sub{font-size:1rem;color:var(--white2);max-width:500px;margin:0 auto 3rem;font-weight:300;line-height:1.8}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{background:var(--black);border-top:1px solid rgba(139,26,26,.2);padding:3rem 10vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:2rem}
+  .footer-logo{font-family:var(--font-display);font-size:.9rem;font-weight:700;letter-spacing:.2em;color:var(--white2)}
+  .footer-copy{font-family:var(--font-display);font-size:.7rem;letter-spacing:.15em;color:var(--white3);text-transform:uppercase}
+  .footer-links{display:flex;gap:2rem}
+  .footer-links a{font-family:var(--font-display);font-size:.7rem;letter-spacing:.2em;color:var(--white3);text-decoration:none;text-transform:uppercase;transition:color .3s}
+  .footer-links a:hover{color:var(--red2)}
+
+  /* QUIENES SOMOS */
+  #quienes-somos{background:var(--graphite);border-top:1px solid rgba(139,26,26,.2)}
+  .qs-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+  .qs-visual{position:relative}
+  .qs-img-frame{position:relative;overflow:hidden}
+  .qs-img-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,26,26,.18),transparent 60%);z-index:1}
+  .qs-img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(25%) contrast(1.1);display:block}
+  .qs-badge{position:absolute;bottom:-16px;left:-16px;background:var(--red);padding:1.6rem 2rem;z-index:2;min-width:140px}
+  .qs-badge-num{font-family:var(--font-display);font-size:2.8rem;font-weight:800;color:var(--white);line-height:1}
+  .qs-badge-label{font-family:var(--font-display);font-size:.55rem;letter-spacing:.3em;color:rgba(245,245,240,.7);text-transform:uppercase;margin-top:.25rem}
+  .qs-line-deco{position:absolute;top:24px;right:-24px;width:1px;height:60%;background:linear-gradient(to bottom,var(--red),transparent);z-index:0}
+  .qs-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(139,26,26,.2);margin-top:3rem}
+  .qs-stat{background:var(--graphite);padding:1.4rem 1.5rem;border-left:2px solid transparent;transition:border-color .3s,background .3s}
+  .qs-stat:hover{border-color:var(--red2);background:var(--graphite2)}
+  .qs-stat-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--red2);line-height:1;margin-bottom:.3rem}
+  .qs-stat-label{font-family:var(--font-display);font-size:.62rem;letter-spacing:.2em;color:var(--white3);text-transform:uppercase}
+  .qs-values{display:flex;flex-direction:column;gap:0;margin-top:2.5rem;border:1px solid rgba(139,26,26,.2)}
+  .qs-value{display:flex;align-items:flex-start;gap:1.2rem;padding:1.2rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.05);transition:background .3s}
+  .qs-value:last-child{border-bottom:none}
+  .qs-value:hover{background:rgba(139,26,26,.06)}
+  .qs-value-icon{width:32px;height:32px;border:1px solid rgba(139,26,26,.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem}
+  .qs-value-icon svg{width:14px;height:14px;fill:var(--red2)}
+  .qs-value-title{font-family:var(--font-display);font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--white);margin-bottom:.2rem}
+  .qs-value-text{font-size:.78rem;color:var(--white3);font-weight:300;line-height:1.7}
+  @media(max-width:1024px){.qs-grid{grid-template-columns:1fr;gap:3rem}}
+  @media(max-width:768px){
+    .qs-visual{display:none}
+    .qs-stats{grid-template-columns:1fr 1fr}
+  }
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
+  .reveal.visible{opacity:1;transform:none}
+  .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s,transform .8s}
+  .reveal-left.visible{opacity:1;transform:none}
+  .reveal-right{opacity:0;transform:translateX(40px);transition:opacity .8s,transform .8s}
+  .reveal-right.visible{opacity:1;transform:none}
+
+  /* RESPONSIVE — TABLET */
+  @media(max-width:1024px){
+    .concierge-grid,.ai-grid{grid-template-columns:1fr;gap:3rem}
+    .showcase-grid{grid-template-columns:1fr 1fr}
+    section{padding:5rem 7vw}
+  }
+
+  /* RESPONSIVE — MOBILE */
+  @media(max-width:768px){
+    /* NAV */
+    nav{padding:0 5vw;height:64px}
+
+    /* SECTIONS */
+    section{padding:4rem 5vw}
+    .section-title{font-size:clamp(1.9rem,9vw,3rem)}
+    .divider{margin:1.5rem 0}
+
+    /* HERO */
+    #hero{min-height:100svh;justify-content:flex-end;padding-bottom:5rem}
+    .hero-content{padding:0 5vw;max-width:100%}
+    .hero-overlay{background:linear-gradient(to top,rgba(5,5,5,1) 30%,rgba(5,5,5,.7) 60%,rgba(5,5,5,.35) 100%)}
+    .hero-h1{font-size:clamp(2.6rem,12vw,4.5rem);margin-bottom:1rem}
+    .hero-sub{font-size:.92rem;margin-bottom:2rem;line-height:1.7}
+    .hero-label{margin-bottom:1.2rem;font-size:.6rem}
+    .hero-btns{flex-direction:column;gap:.7rem;margin-bottom:2rem}
+    .btn-primary,.btn-outline{width:100%;text-align:center;padding:.85rem 1.5rem;font-size:.8rem;letter-spacing:.2em}
+    .hero-badges{gap:1rem;flex-direction:column}
+    .hero-badge{font-size:.7rem}
+    .hero-scroll{display:none}
+
+    /* MARCAS */
+    .marcas-header{flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+    .brands-grid{grid-template-columns:repeat(2,1fr)}
+    .brand-card{padding:1.8rem 1rem}
+    .brand-icon{width:48px;height:48px;font-size:1rem}
+    .brand-name{font-size:.8rem;letter-spacing:.2em}
+
+    /* CONCIERGE */
+    .concierge-grid{grid-template-columns:1fr;gap:2rem}
+    .concierge-visual{display:none}
+    .concierge-cards{gap:0}
+    .concierge-card{padding:1.2rem 1.2rem}
+    .concierge-accent{display:none}
+
+    /* SHOWCASE */
+    .showcase-grid{grid-template-columns:1fr 1fr !important}
+    .sc-img-wrap{aspect-ratio:1/1}
+    .sc-model{font-size:1rem}
+    .sc-tag{font-size:.55rem;letter-spacing:.25em}
+    .sc-content{padding:1rem}
+    .sc-year{font-size:.6rem;padding:.2rem .5rem;top:.7rem;right:.7rem}
+    .showcase-card:last-child{aspect-ratio:1/1;min-height:unset}
+
+    /* AI FORM */
+    .ai-grid{grid-template-columns:1fr;gap:2rem}
+    .ai-form-wrap{padding:1.8rem 1.2rem}
+    .form-grid{grid-template-columns:1fr}
+    .urgency-row{gap:.4rem}
+    .urgency-btn{font-size:.6rem;padding:.5rem .3rem;letter-spacing:.1em}
+
+    /* BENEFITS */
+    .benefits-grid{grid-template-columns:1fr 1fr}
+    .benefit-card{padding:1.5rem 1.2rem}
+    .benefit-title{font-size:1rem}
+
+    /* TESTIMONIOS / SCREENSHOTS */
+    .screenshots-grid{grid-template-columns:1fr 1fr}
+
+    /* CTA */
+    #cta{padding:5rem 5vw}
+    .cta-title{font-size:clamp(2rem,10vw,3.5rem)}
+    .cta-btns{flex-direction:column;align-items:center;gap:.7rem}
+    .cta-btns .btn-primary,.cta-btns .btn-outline{width:100%;max-width:340px;text-align:center}
+
+    /* FOOTER */
+    footer{flex-direction:column;text-align:center;padding:2.5rem 5vw;gap:1.5rem}
+    .footer-links{flex-wrap:wrap;justify-content:center;gap:1.2rem}
+
+    /* WHATSAPP */
+    .wa-float{bottom:1.2rem;right:1.2rem;width:50px;height:50px}
+    .wa-float svg{width:24px;height:24px}
+  }
+
+  /* SMALL PHONES */
+  @media(max-width:390px){
+    .hero-h1{font-size:2.4rem}
+    .brands-grid{grid-template-columns:1fr 1fr}
+    .benefits-grid{grid-template-columns:1fr}
+    .screenshots-grid{grid-template-columns:1fr}
+    .ai-form-wrap{padding:1.4rem 1rem}
+  }
+
+  /* MENU DRAWER */
+  .nav-mobile-menu{
+    display:block;
+    position:fixed;
+    top:0;right:0;bottom:auto;
+    width:420px;
+    max-width:100vw;
+    background:rgba(5,5,5,.98);
+    backdrop-filter:blur(24px);
+    border-left:1px solid rgba(139,26,26,.3);
+    border-bottom:1px solid rgba(139,26,26,.3);
+    z-index:200;
+    padding:0;
+    transform:translateX(100%);
+    transition:transform .5s cubic-bezier(.4,0,.2,1);
+    overflow:hidden;
+  }
+  .nav-mobile-menu.open{transform:translateX(0)}
+  .menu-backdrop{
+    display:none;
+    position:fixed;inset:0;
+    background:rgba(5,5,5,.6);
+    backdrop-filter:blur(4px);
+    z-index:199;
+    opacity:0;
+    transition:opacity .4s;
+  }
+  .menu-backdrop.open{display:block;opacity:1}
+  .menu-inner{
+    display:flex;flex-direction:column;
+    padding:2rem 0;
+  }
+  .menu-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 2.5rem 2rem;
+    border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .menu-logo img{height:36px;width:auto;object-fit:contain;opacity:.85}
+  .menu-close{
+    background:transparent;border:1px solid rgba(255,255,255,.1);
+    width:40px;height:40px;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:var(--white3);font-size:1.1rem;
+    transition:all .2s;
+    font-family:var(--font-display);
+  }
+  .menu-close:hover{border-color:var(--red2);color:var(--white);background:rgba(139,26,26,.1)}
+  .menu-links{
+    display:flex;flex-direction:column;
+    padding:1.2rem 2.5rem 1.5rem;
+    gap:0;
+  }
+  .menu-links a{
+    color:var(--white3);
+    font-family:var(--font-display);
+    font-size:.95rem;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:.65rem 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    display:flex;align-items:center;justify-content:space-between;
+    transition:color .25s,padding-left .25s;
+    position:relative;
+  }
+  .menu-links a::after{
+    content:'→';
+    font-size:.85rem;
+    opacity:0;
+    transform:translateX(-8px);
+    transition:opacity .25s,transform .25s;
+    color:var(--red2);
+  }
+  .menu-links a:hover{color:var(--white);padding-left:.5rem}
+  .menu-links a:hover::after{opacity:1;transform:translateX(0)}
+  .menu-links a.menu-cta{
+    margin-top:1.5rem;
+    border:none;
+    background:var(--red);
+    color:var(--white);
+    padding:1rem 1.5rem;
+    text-align:center;
+    justify-content:center;
+    font-size:1rem;
+    letter-spacing:.25em;
+    border-bottom:none;
+  }
+  .menu-links a.menu-cta::after{display:none}
+  .menu-links a.menu-cta:hover{background:var(--red2);padding-left:1.5rem}
+  .menu-footer{
+    padding:1.5rem 2.5rem 0;
+    border-top:1px solid rgba(255,255,255,.06);
+  }
+  .menu-footer-label{
+    font-family:var(--font-display);font-size:.6rem;letter-spacing:.4em;
+    color:var(--white3);text-transform:uppercase;margin-bottom:.6rem;
+  }
+  .menu-footer-tagline{
+    font-family:var(--font-serif);font-size:.85rem;font-style:italic;
+    color:rgba(245,245,240,.35);line-height:1.6;
+  }
+  .menu-deco-line{
+    position:absolute;top:0;left:0;width:2px;height:100%;
+    background:linear-gradient(to bottom,var(--red),transparent 60%);
+  }
+  .nav-hamburger.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+  .nav-hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+  .nav-hamburger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  @media(max-width:768px){
+    nav{padding:0 5vw;height:64px}
+    .nav-mobile-menu{width:72vw}
+  }
+  /* WHATSAPP PREMIUM */
+  .wa-wrap{position:fixed;bottom:2rem;right:2rem;z-index:150;display:flex;flex-direction:column;align-items:flex-end;gap:.75rem}
+  .wa-bubble{
+    background:var(--graphite);
+    border:1px solid rgba(139,26,26,.4);
+    padding:1rem 1.4rem;
+    max-width:240px;
+    position:relative;
+    opacity:0;
+    transform:translateY(8px) scale(.96);
+    transition:opacity .4s,transform .4s;
+    pointer-events:none;
+  }
+  .wa-bubble.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+  .wa-bubble::after{
+    content:'';
+    position:absolute;
+    bottom:-6px;right:22px;
+    width:10px;height:10px;
+    background:var(--graphite);
+    border-right:1px solid rgba(139,26,26,.4);
+    border-bottom:1px solid rgba(139,26,26,.4);
+    transform:rotate(45deg);
+  }
+  .wa-bubble-label{font-family:var(--font-display);font-size:.55rem;letter-spacing:.35em;color:var(--red2);text-transform:uppercase;margin-bottom:.4rem}
+  .wa-bubble-text{font-family:var(--font-display);font-size:.82rem;font-weight:600;color:var(--white);line-height:1.4;letter-spacing:.02em}
+  .wa-bubble-sub{font-size:.72rem;color:var(--white3);font-weight:300;margin-top:.3rem;line-height:1.5}
+  .wa-bubble-close{position:absolute;top:.4rem;right:.6rem;background:none;border:none;color:var(--white3);cursor:pointer;font-size:.9rem;line-height:1;padding:0;transition:color .2s}
+  .wa-bubble-close:hover{color:var(--white)}
+  .wa-btn{
+    width:58px;height:58px;
+    background:transparent;
+    border:none;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    text-decoration:none;
+    position:relative;
+  }
+  .wa-btn svg{
+    width:38px;height:38px;
+    fill:var(--red2);
+    position:relative;z-index:2;
+    filter:drop-shadow(0 0 8px rgba(139,26,26,.7));
+    animation:waPulse 2.8s ease-in-out infinite;
+  }
+  .wa-btn::before{
+    content:'';
+    position:absolute;
+    inset:-6px;
+    border-radius:50%;
+    border:1.5px solid rgba(139,26,26,.45);
+    animation:waRing 2.8s ease-in-out infinite;
+  }
+  .wa-btn::after{
+    content:'';
+    position:absolute;
+    inset:-14px;
+    border-radius:50%;
+    border:1px solid rgba(139,26,26,.18);
+    animation:waRing 2.8s ease-in-out infinite .3s;
+  }
+  @keyframes waPulse{
+    0%,100%{filter:drop-shadow(0 0 6px rgba(139,26,26,.6));transform:scale(1)}
+    50%{filter:drop-shadow(0 0 16px rgba(192,57,43,.9));transform:scale(1.06)}
+  }
+  @keyframes waRing{
+    0%,100%{opacity:.5;transform:scale(1)}
+    50%{opacity:1;transform:scale(1.08)}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839134/IMG_6918_a4ltst_xmpiin.png" alt="Refacciones RG MX" style="height:68px;width:auto;object-fit:contain">
+  </a>
+  <div class="nav-hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- BACKDROP -->
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMobileMenu()"></div>
+
+<!-- DRAWER MENU -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <div class="menu-deco-line"></div>
+  <div class="menu-inner">
+    <div class="menu-header">
+      <div class="menu-logo">
+        <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839134/IMG_6918_a4ltst_xmpiin.png" alt="Refacciones RG MX">
+      </div>
+      <button class="menu-close" onclick="closeMobileMenu()">&times;</button>
+    </div>
+    <div class="menu-links">
+      <a href="#" onclick="closeMobileMenu();openQuienesSomos(event)">Quiénes Somos</a>
+      <a href="#marcas" onclick="closeMobileMenu()">Marcas</a>
+      <a href="#concierge" onclick="closeMobileMenu()">Concierge</a>
+      <a href="#showcase" onclick="closeMobileMenu()">Casos Recientes</a>
+      <a href="#beneficios" onclick="closeMobileMenu()">Servicios</a>
+      <a href="#testimonios" onclick="closeMobileMenu()">Clientes</a>
+
+    </div>
+    <div class="menu-footer">
+      <div class="menu-footer-label">Automotive Concierge · MX</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL QUIENES SOMOS -->
+<div id="qs-modal" style="display:none;position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;padding:1.5rem">
+  <!-- Backdrop -->
+  <div id="qs-backdrop" onclick="closeQuienesSomos()" style="position:absolute;inset:0;background:rgba(5,5,5,.85);backdrop-filter:blur(8px)"></div>
+
+  <!-- Panel -->
+  <div id="qs-panel" style="position:relative;z-index:1;width:100%;max-width:1100px;max-height:90vh;overflow-y:auto;background:var(--graphite);border:1px solid rgba(139,26,26,.35);transform:translateY(30px);opacity:0;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .45s">
+
+    <!-- Foto de fondo dentro del panel -->
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779841318/IMG_6932_dgozo2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(20%) contrast(1.05)">
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.97) 40%,rgba(13,13,13,.88) 65%,rgba(13,13,13,.72) 100%)"></div>
+      <div style="position:absolute;inset:0;background:rgba(13,13,13,.4)"></div>
+    </div>
+
+    <!-- Marco decorativo -->
+    <div style="position:absolute;inset:1.2rem;z-index:1;border:1px solid rgba(139,26,26,.28);pointer-events:none">
+      <div style="position:absolute;top:-1px;left:2.5rem;right:2.5rem;height:2px;background:linear-gradient(to right,transparent,var(--red),transparent)"></div>
+      <div style="position:absolute;bottom:-1px;left:2.5rem;right:2.5rem;height:2px;background:linear-gradient(to right,transparent,rgba(139,26,26,.4),transparent)"></div>
+
+    </div>
+
+    <!-- Botón cerrar -->
+    <button onclick="closeQuienesSomos()" style="position:sticky;top:0;float:right;z-index:10;background:transparent;border:none;cursor:pointer;padding:1.4rem 1.6rem;color:var(--white3);font-size:1.3rem;line-height:1;transition:color .2s" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--white3)'">&times;</button>
+
+    <!-- Contenido del panel -->
+    <div style="position:relative;z-index:2;padding:3.5rem 4rem 4rem;clear:both">
+      <div class="qs-grid">
+
+        <!-- Visual -->
+        <div class="qs-visual">
+          <div class="qs-img-frame">
+            <img class="qs-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779841318/IMG_6932_dgozo2.jpg" alt="Equipo RG Automotive">
+            <div class="qs-line-deco"></div>
+          </div>
+          <div class="qs-badge">
+            <div class="qs-badge-num">15+</div>
+            <div class="qs-badge-label">Años en el<br>mercado</div>
+          </div>
+          <div class="qs-stats">
+            <div class="qs-stat">
+              <div class="qs-stat-num">500+</div>
+              <div class="qs-stat-label">Clientes atendidos</div>
+            </div>
+            <div class="qs-stat">
+              <div class="qs-stat-num">98%</div>
+              <div class="qs-stat-label">Satisfacción</div>
+            </div>
+            <div class="qs-stat">
+              <div class="qs-stat-num">30+</div>
+              <div class="qs-stat-label">Marcas que manejamos</div>
+            </div>
+            <div class="qs-stat">
+              <div class="qs-stat-num">MX</div>
+              <div class="qs-stat-label">Cobertura nacional</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenido -->
+        <div>
+          <div class="section-label">Quiénes Somos</div>
+          <h2 class="section-title">Expertos en<br>refacciones<br><span style="color:var(--red2)">de élite</span></h2>
+          <div class="divider"></div>
+          <p style="color:var(--white2);font-weight:300;line-height:1.9;font-size:.95rem;margin-bottom:.9rem">
+            Refacciones RG MX nació de la pasión por los vehículos de alto desempeño y la frustración de no encontrar las piezas correctas en el mercado mexicano. Hoy somos el puente entre los propietarios más exigentes y los proveedores más especializados del mundo.
+          </p>
+          <p style="color:var(--white3);font-weight:300;line-height:1.9;font-size:.88rem;margin-bottom:2rem">
+            Operamos bajo un modelo de <em style="color:var(--white2);font-style:normal">Automotive Concierge</em>: cada cliente recibe atención personalizada, asesoría técnica experta y acompañamiento completo desde la búsqueda hasta la entrega de su pieza.
+          </p>
+
+          <div class="qs-values">
+            <div class="qs-value">
+              <div class="qs-value-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+              </div>
+              <div>
+                <div class="qs-value-title">Calidad sin Compromiso</div>
+                <div class="qs-value-text">Trabajamos únicamente con piezas OEM, originales y de proveedores certificados. Nunca te ofrecemos una alternativa inferior sin avisarte.</div>
+              </div>
+            </div>
+            <div class="qs-value">
+              <div class="qs-value-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5L12 1zm0 4l6 2.18V11c0 3.61-2.44 7.03-6 8.09C8.44 18.03 6 14.61 6 11V7.18L12 5z"/></svg>
+              </div>
+              <div>
+                <div class="qs-value-title">Transparencia Total</div>
+                <div class="qs-value-text">Cotizaciones claras, sin costos ocultos. Sabes exactamente qué estás comprando, de dónde viene y cuánto tiempo tardará en llegar.</div>
+              </div>
+            </div>
+            <div class="qs-value">
+              <div class="qs-value-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+              </div>
+              <div>
+                <div class="qs-value-title">Respuesta Inmediata</div>
+                <div class="qs-value-text">Un especialista real atiende tu solicitud en menos de 2 horas. Sin bots, sin tiempos de espera indefinidos, sin intermediarios innecesarios.</div>
+              </div>
+            </div>
+            <div class="qs-value">
+              <div class="qs-value-icon">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              </div>
+              <div>
+                <div class="qs-value-title">Red de Proveedores Global</div>
+                <div class="qs-value-text">Contamos con alianzas en Europa, EE.UU. y Japón para localizar piezas descontinuadas, raras o de difícil acceso en el mercado local.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline class="hero-bg-img" style="object-fit:cover;width:100%;height:100%">
+      <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779838143/insta_video_27702_izwxf5.mov" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay2"></div>
+  <div class="hero-content">
+    <div class="hero-label reveal">Automotive Concierge · Est. MX</div>
+    <h1 class="hero-h1 reveal">Refacciones<br>Especializadas<br>para Vehículos<br><em>Exóticos</em></h1>
+    <p class="hero-sub reveal">Localizamos, cotizamos y gestionamos piezas OEM y performance para deportivos, premium y clásicos con atención absolutamente personalizada.</p>
+    <div class="hero-btns reveal">
+      <a href="#asistente" class="btn-primary">Solicitar Cotización</a>
+      <a href="https://wa.me/521234567890" class="btn-outline">Hablar con un Especialista</a>
+    </div>
+    <div class="hero-badges reveal">
+      <span class="hero-badge"><span class="hero-badge-dot"></span>Refacciones Originales</span>
+      <span class="hero-badge"><span class="hero-badge-dot"></span>Atención Especializada</span>
+      <span class="hero-badge"><span class="hero-badge-dot"></span>Gestión Personalizada</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section id="marcas">
+  <div class="marcas-header">
+    <div>
+      <div class="section-label reveal">Portafolio de Marcas</div>
+      <h2 class="section-title reveal">Especialistas en<br>alto desempeño</h2>
+    </div>
+    <p class="section-sub reveal" style="max-width:320px;font-size:.85rem">Trabajamos exclusivamente con vehículos de alta gama, exóticos y de colección.</p>
+  </div>
+  <div class="brands-grid reveal">
+    <div class="brand-card">
+      <div class="brand-icon">P</div>
+      <div class="brand-name">Porsche</div>
+      <div class="brand-sub">911 · Cayenne · GT3</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-icon">F</div>
+      <div class="brand-name">Ferrari</div>
+      <div class="brand-sub">488 · F8 · Roma</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-icon">L</div>
+      <div class="brand-name">Lamborghini</div>
+      <div class="brand-sub">Huracán · Urus</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-icon">AMG</div>
+      <div class="brand-name">Mercedes AMG</div>
+      <div class="brand-sub">GT · C63 · G63</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-icon">M</div>
+      <div class="brand-name">BMW M</div>
+      <div class="brand-sub">M3 · M5 · M8</div>
+    </div>
+    <div class="brand-card">
+      <div class="brand-icon">RS</div>
+      <div class="brand-name">Audi RS</div>
+      <div class="brand-sub">RS6 · RS7 · R8</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONCIERGE -->
+<section id="concierge" style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0">
+    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779838435/IMG_6912_g7kgxo.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(30%) contrast(1.1)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,5,.97) 50%,rgba(5,5,5,.85) 100%)"></div>
+    <div style="position:absolute;inset:0;background:rgba(5,5,5,.5)"></div>
+  </div>
+  <div class="concierge-grid" style="position:relative;z-index:1">
+    <div class="concierge-visual reveal-left">
+      <div class="concierge-img-wrap">
+        <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779838435/IMG_6912_g7kgxo.jpg" alt="Pieza automotriz premium" class="concierge-img" style="width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(20%) contrast(1.1);display:block">
+        <div class="concierge-accent">
+          <div style="text-align:center">
+            <div class="concierge-num">15+</div>
+            <div class="concierge-num-label">Años de<br>experiencia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="section-label">Servicio Premium</div>
+      <h2 class="section-title">Automotive<br>Concierge</h2>
+      <div class="divider"></div>
+      <p style="color:var(--white2);font-weight:300;line-height:1.9;font-size:.95rem;margin-bottom:2.5rem">Un servicio diseñado para propietarios que exigen precisión absoluta. Cada solicitud es tratada con la misma dedicación que merece su vehículo.</p>
+      <div class="concierge-cards">
+        <div class="concierge-card">
+          <div class="cc-num">01</div>
+          <div class="cc-title">Localización Exacta</div>
+          <div class="cc-sub">Identificamos la pieza correcta para su vehículo, número de parte y especificación técnica.</div>
+        </div>
+        <div class="concierge-card">
+          <div class="cc-num">02</div>
+          <div class="cc-title">Validación Técnica</div>
+          <div class="cc-sub">Verificamos compatibilidad, origen y calidad antes de cualquier cotización.</div>
+        </div>
+        <div class="concierge-card">
+          <div class="cc-num">03</div>
+          <div class="cc-title">Gestión Personalizada</div>
+          <div class="cc-sub">Un especialista dedicado gestiona su solicitud de principio a fin.</div>
+        </div>
+        <div class="concierge-card">
+          <div class="cc-num">04</div>
+          <div class="cc-title">Seguimiento Profesional</div>
+          <div class="cc-sub">Actualizaciones en tiempo real del estado de su pedido hasta la entrega.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="section-label reveal">Casos Recientes</div>
+  <h2 class="section-title reveal">Piezas que hemos<br>localizado</h2>
+  <div class="showcase-grid reveal" style="grid-template-columns:repeat(4,1fr)">
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840407/IMG_6925_pvxupe.jpg" alt="Suspensión neumática GLE63 AMG">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">2019</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Mercedes Benz · GLE 63 AMG</div>
+        <div class="sc-model">Suspensión<br>Neumática</div>
+        <div class="sc-part">Chasis · OEM</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840406/IMG_6927_ll64jc.jpg" alt="Carburador Chevrolet 150 1957">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">1957</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Chevrolet · 150</div>
+        <div class="sc-model">Carburador<br>Original</div>
+        <div class="sc-part">Motor · Clásico</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840406/IMG_6926_eouvcv.jpg" alt="Cuerpo de válvulas PDK Porsche GT3 RS">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">2018</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Porsche · GT3 RS</div>
+        <div class="sc-model">Cuerpo de<br>Válvulas PDK</div>
+        <div class="sc-part">Transmisión · OEM</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840406/IMG_6928_vnsqva.jpg" alt="Sistema de frenos Lamborghini Huracán">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">2018</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Lamborghini · Huracán</div>
+        <div class="sc-model">Sistema de<br>Frenos</div>
+        <div class="sc-part">Frenos · OEM</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840405/IMG_6929_htvrc8.jpg" alt="Frenos y suspensión Cadillac Escalade V">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">2023</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Cadillac · Escalade V</div>
+        <div class="sc-model">Frenos &<br>Suspensión</div>
+        <div class="sc-part">Chasis · OEM</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840405/IMG_6930_ccu5fu.jpg" alt="Sistema de frenos Rolls Royce Cullinan">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">2020</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Rolls Royce · Cullinan</div>
+        <div class="sc-model">Sistema de<br>Frenos</div>
+        <div class="sc-part">Frenos · OEM</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779840404/IMG_6931_gbui7h.jpg" alt="Panel de indicadores Corvette 1969">
+        <div class="sc-overlay"></div>
+        <span class="sc-year">1969</span>
+      </div>
+      <div class="sc-content">
+        <div class="sc-tag">Chevrolet · Corvette</div>
+        <div class="sc-model">Panel LED<br>Indicadores</div>
+        <div class="sc-part">Interior · Custom</div>
+      </div>
+    </div>
+
+    <div class="showcase-card">
+      <div class="sc-img-wrap" style="background:var(--graphite2)">
+        <div class="sc-overlay"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;padding:1.5rem;text-align:center">
+          <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:800;color:var(--red2);line-height:1;margin-bottom:.6rem">+</div>
+          <div style="font-family:var(--font-display);font-size:1.2rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--white);line-height:1.2;margin-bottom:.7rem">Y Muchas<br>Piezas Más</div>
+          <div style="width:24px;height:1px;background:var(--red);margin:0 auto .7rem"></div>
+          <div style="font-size:.72rem;color:var(--white3);font-weight:300;line-height:1.6;max-width:160px">Localizamos cualquier refacción para tu vehículo de alta gama</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ASISTENTE IA -->
+<section id="asistente">
+  <div class="ai-grid">
+    <div class="reveal-left">
+      <div class="section-label">Tecnología · IA</div>
+      <h2 class="section-title">Describe<br>tu Vehículo</h2>
+      <div class="divider"></div>
+      <p style="color:var(--white2);font-weight:300;line-height:1.9;font-size:.95rem;margin-bottom:2rem">Nuestro sistema analiza tu solicitud y la envía directamente a un especialista vía WhatsApp para una respuesta inmediata.</p>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid rgba(139,26,26,.2);background:rgba(139,26,26,.05)">
+          <div style="width:2px;height:40px;background:var(--red);flex-shrink:0"></div>
+          <div>
+            <div style="font-family:var(--font-display);font-size:.7rem;letter-spacing:.2em;color:var(--red2);text-transform:uppercase;margin-bottom:.2rem">Respuesta en</div>
+            <div style="font-family:var(--font-display);font-size:1.2rem;font-weight:600;letter-spacing:.05em">Menos de 2 horas</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:1rem;border:1px solid rgba(139,26,26,.2);background:rgba(139,26,26,.05)">
+          <div style="width:2px;height:40px;background:var(--red);flex-shrink:0"></div>
+          <div>
+            <div style="font-family:var(--font-display);font-size:.7rem;letter-spacing:.2em;color:var(--red2);text-transform:uppercase;margin-bottom:.2rem">Cobertura</div>
+            <div style="font-family:var(--font-display);font-size:1.2rem;font-weight:600;letter-spacing:.05em">Nacional · Internacional</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-form-wrap reveal-right">
+      <div class="ai-form-header">
+        <div class="ai-dot"></div>
+        <span class="ai-dot-label">Sistema activo · Especialista disponible</span>
+      </div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label class="form-label">Marca</label>
+          <select class="form-select" id="f-marca">
+            <option value="">Seleccionar</option>
+            <option>Porsche</option>
+            <option>Ferrari</option>
+            <option>Lamborghini</option>
+            <option>Mercedes AMG</option>
+            <option>BMW M</option>
+            <option>Audi RS</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Modelo</label>
+          <input class="form-input" type="text" id="f-modelo" placeholder="911 GT3, F8, Huracán...">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Año</label>
+          <input class="form-input" type="text" id="f-año" placeholder="2018">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Tu Nombre</label>
+          <input class="form-input" type="text" id="f-nombre" placeholder="Nombre completo">
+        </div>
+        <div class="form-field full">
+          <label class="form-label">Pieza Requerida</label>
+          <textarea class="form-textarea" id="f-pieza" placeholder="Describe la pieza, número de parte o síntoma que presenta el vehículo..."></textarea>
+        </div>
+      </div>
+      <div class="form-field" style="margin-bottom:1rem">
+        <label class="form-label" style="margin-bottom:.6rem">Nivel de Urgencia</label>
+        <div class="urgency-row">
+          <button class="urgency-btn active" onclick="setUrgency(this,'Normal')">Normal</button>
+          <button class="urgency-btn" onclick="setUrgency(this,'Urgente')">Urgente</button>
+          <button class="urgency-btn" onclick="setUrgency(this,'Inmediato')">Inmediato</button>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="sendToWhatsApp()">Analizar Solicitud</button>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section id="beneficios">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:0;flex-wrap:wrap;gap:2rem">
+    <div>
+      <div class="section-label reveal">Por qué elegirnos</div>
+      <h2 class="section-title reveal">La diferencia<br>RG MX</h2>
+    </div>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <span class="benefit-num">01</span>
+      <div class="benefit-title">Atención Especializada</div>
+      <p class="benefit-text">Cada cliente tiene un especialista asignado que conoce su historial y su vehículo.</p>
+      <div class="benefit-line"></div>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-num">02</span>
+      <div class="benefit-title">Refacciones OEM</div>
+      <p class="benefit-text">Solo trabajamos con piezas originales de fabricante y proveedores certificados.</p>
+      <div class="benefit-line"></div>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-num">03</span>
+      <div class="benefit-title">Cobertura Nacional</div>
+      <p class="benefit-text">Entregamos en todo México con logística especializada para piezas de alto valor.</p>
+      <div class="benefit-line"></div>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-num">04</span>
+      <div class="benefit-title">Asesoría Personalizada</div>
+      <p class="benefit-text">Te orientamos sobre la mejor opción técnica y económica para cada situación.</p>
+      <div class="benefit-line"></div>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-num">05</span>
+      <div class="benefit-title">Respuesta Rápida</div>
+      <p class="benefit-text">Cotización preliminar en menos de 2 horas. Atención 7 días a la semana.</p>
+      <div class="benefit-line"></div>
+    </div>
+    <div class="benefit-card reveal">
+      <span class="benefit-num">06</span>
+      <div class="benefit-title">Precisión Técnica</div>
+      <p class="benefit-text">Validación técnica de cada pieza antes de cotizar. Cero errores de compatibilidad.</p>
+      <div class="benefit-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-label reveal">Clientes</div>
+  <h2 class="section-title reveal">Conversaciones<br>reales con clientes</h2>
+  <p class="section-sub reveal" style="margin-bottom:3rem">Capturas reales de clientes satisfechos. Sin guión, sin edición.</p>
+  <div class="screenshots-grid reveal">
+    <div style="background:var(--black);overflow:hidden;position:relative;cursor:zoom-in;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;border:1px solid rgba(139,26,26,.12)" onclick="openLightbox(this.querySelector('img').src)">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779838434/IMG_6915_spwutb.jpg" alt="Testimonio cliente" style="width:100%;max-width:220px;height:auto;display:block;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.7);transition:transform .4s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    </div>
+    <div style="background:var(--black);overflow:hidden;position:relative;cursor:zoom-in;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;border:1px solid rgba(139,26,26,.12)" onclick="openLightbox(this.querySelector('img').src)">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779838435/IMG_6916_hijwoi.jpg" alt="Testimonio cliente" style="width:100%;max-width:220px;height:auto;display:block;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.7);transition:transform .4s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    </div>
+    <div style="background:var(--black);overflow:hidden;position:relative;cursor:zoom-in;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;border:1px solid rgba(139,26,26,.12)" onclick="openLightbox(this.querySelector('img').src)">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779838434/IMG_6914_ksjokc.jpg" alt="Testimonio cliente" style="width:100%;max-width:220px;height:auto;display:block;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.7);transition:transform .4s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    </div>
+    <div style="background:var(--black);overflow:hidden;position:relative;cursor:zoom-in;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;border:1px solid rgba(139,26,26,.12)" onclick="openLightbox(this.querySelector('img').src)">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839283/IMG_6924_qbjcyo.jpg" alt="Testimonio cliente" style="width:100%;max-width:220px;height:auto;display:block;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.7);transition:transform .4s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    </div>
+    <div style="background:var(--black);overflow:hidden;position:relative;cursor:zoom-in;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;border:1px solid rgba(139,26,26,.12)" onclick="openLightbox(this.querySelector('img').src)">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839284/IMG_6921_bf6jwn.jpg" alt="Testimonio cliente" style="width:100%;max-width:220px;height:auto;display:block;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.7);transition:transform .4s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    </div>
+    <div style="background:var(--black);overflow:hidden;position:relative;cursor:zoom-in;display:flex;align-items:flex-start;justify-content:center;padding:1.5rem 1rem;border:1px solid rgba(139,26,26,.12)" onclick="openLightbox(this.querySelector('img').src)">
+      <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839284/IMG_6923_ok3r36.jpg" alt="Testimonio cliente" style="width:100%;max-width:220px;height:auto;display:block;border-radius:10px;box-shadow:0 8px 40px rgba(0,0,0,.7);transition:transform .4s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+    </div>
+  </div>
+  <p style="text-align:center;font-family:var(--font-display);font-size:.7rem;letter-spacing:.3em;color:var(--white3);text-transform:uppercase;margin-top:1.5rem">Haz clic en cualquier imagen para ampliarla</p>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:999;align-items:center;justify-content:center;cursor:pointer" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="" style="max-height:92vh;max-width:92vw;object-fit:contain;box-shadow:0 0 80px rgba(139,26,26,.3)">
+  <div style="position:absolute;top:1.5rem;right:2rem;font-family:var(--font-display);font-size:1.5rem;color:var(--white3);cursor:pointer" onclick="closeLightbox()">✕</div>
+</div>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="cta-label reveal">Refacciones RG MX</div>
+  <h2 class="cta-title reveal">Tu vehículo merece<br>precisión absoluta</h2>
+  <p class="cta-sub reveal">Cotiza con especialistas en refacciones premium. Atención personalizada, piezas originales.</p>
+  <div class="cta-btns reveal">
+    <a href="#asistente" class="btn-primary" style="font-size:.9rem;padding:1rem 3rem">Solicitar Cotización</a>
+    <a href="https://wa.me/521234567890" class="btn-outline" style="font-size:.9rem;padding:1rem 3rem">WhatsApp Directo</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779839134/IMG_6918_a4ltst_xmpiin.png" alt="Refacciones RG MX" style="height:36px;width:auto;object-fit:contain;opacity:.8"></div>
+  <div class="footer-copy">© 2025 · Automotive Concierge · México</div>
+  <div class="footer-links">
+    <a href="#marcas">Marcas</a>
+    <a href="#concierge">Concierge</a>
+    <a href="#asistente">Cotizar</a>
+    <a href="https://wa.me/521234567890">Contacto</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP PREMIUM -->
+<div class="wa-wrap">
+  <div class="wa-bubble" id="waBubble">
+    <button class="wa-bubble-close" onclick="dismissBubble()" aria-label="Cerrar">&times;</button>
+    <div class="wa-bubble-label">Especialista disponible</div>
+    <div class="wa-bubble-text">¿Tu vehículo necesita una pieza difícil de encontrar?</div>
+    <div class="wa-bubble-sub">Escríbenos ahora — respondemos en menos de 2 horas.</div>
+  </div>
+  <a href="https://wa.me/521234567890" class="wa-btn" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.043L.787 23.213l4.284-1.374A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.804 9.804 0 01-5.034-1.387l-.361-.214-3.741 1.201 1.224-3.627-.236-.374A9.818 9.818 0 012.182 12C2.182 6.567 6.567 2.182 12 2.182S21.818 6.567 21.818 12 17.433 21.818 12 21.818z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+  // Hamburger menu
+  const hamburger=document.getElementById('hamburger');
+  const mobileMenu=document.getElementById('mobileMenu');
+  const menuBackdrop=document.getElementById('menuBackdrop');
+  hamburger.addEventListener('click',()=>{
+    const isOpen=mobileMenu.classList.contains('open');
+    if(isOpen){ closeMobileMenu(); } else { openMobileMenu(); }
+  });
+  function openMobileMenu(){
+    hamburger.classList.add('active');
+    mobileMenu.classList.add('open');
+    menuBackdrop.classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeMobileMenu(){
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    menuBackdrop.classList.remove('open');
+    document.body.style.overflow='';
+  }
+
+  // WhatsApp bubble
+  const waBubble=document.getElementById('waBubble');
+  let bubbleDismissed=false;
+  setTimeout(()=>{
+    if(!bubbleDismissed){
+      waBubble.classList.add('visible');
+      setTimeout(()=>{ if(!bubbleDismissed) hideBubble(); },6000);
+    }
+  },3000);
+  function hideBubble(){ waBubble.classList.remove('visible'); }
+  function dismissBubble(){ bubbleDismissed=true; hideBubble(); }
+
+  // On mobile, disable horizontal reveals (prevent overflow flash)
+  if(window.innerWidth<=768){
+    document.querySelectorAll('.reveal-left,.reveal-right').forEach(el=>{
+      el.classList.remove('reveal-left','reveal-right');
+      el.classList.add('reveal');
+    });
+  }
+
+  // NAV scroll — hide on down, show on up
+  const nav=document.getElementById('navbar');
+  let lastY=0,ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const y=window.scrollY;
+        nav.classList.toggle('scrolled',y>50);
+        if(y>80){
+          if(y>lastY+4){nav.classList.add('nav-hidden');closeMobileMenu();}
+          else if(y<lastY-4){nav.classList.remove('nav-hidden');}
+        }else{nav.classList.remove('nav-hidden');}
+        lastY=y;ticking=false;
+      });
+      ticking=true;
+    }
+  });
+
+  // Reveal on scroll
+  const reveals=document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+    });
+  },{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+  reveals.forEach(el=>{
+    // Stagger children in grids
+    observer.observe(el);
+  });
+
+  // Urgency buttons
+  let urgencia='Normal';
+  function setUrgency(btn,val){
+    urgencia=val;
+    document.querySelectorAll('.urgency-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  // Send to WhatsApp
+  function sendToWhatsApp(){
+    const marca=document.getElementById('f-marca').value||'No especificada';
+    const modelo=document.getElementById('f-modelo').value||'No especificado';
+    const año=document.getElementById('f-año').value||'No especificado';
+    const nombre=document.getElementById('f-nombre').value||'Cliente';
+    const pieza=document.getElementById('f-pieza').value||'No especificada';
+    const msg=`*SOLICITUD DE COTIZACIÓN - REFACCIONES RG MX*\n\n👤 Nombre: ${nombre}\n🚗 Vehículo: ${marca} ${modelo} ${año}\n🔩 Pieza: ${pieza}\n⚡ Urgencia: ${urgencia}\n\n_Solicitud enviada desde refaccionesrgmx.com_`;
+    const url=`https://wa.me/521234567890?text=${encodeURIComponent(msg)}`;
+    window.open(url,'_blank');
+  }
+
+  // Modal Quiénes Somos
+  function openQuienesSomos(e){
+    if(e) e.preventDefault();
+    const modal=document.getElementById('qs-modal');
+    const panel=document.getElementById('qs-panel');
+    modal.style.display='flex';
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(()=>{
+      panel.style.transform='translateY(0)';
+      panel.style.opacity='1';
+    });
+  }
+  function closeQuienesSomos(){
+    const modal=document.getElementById('qs-modal');
+    const panel=document.getElementById('qs-panel');
+    panel.style.transform='translateY(30px)';
+    panel.style.opacity='0';
+    setTimeout(()=>{
+      modal.style.display='none';
+      document.body.style.overflow='';
+    },420);
+  }
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape') closeQuienesSomos();
+  });
+
+  function openLightbox(src){
+    const lb=document.getElementById('lightbox');
+    document.getElementById('lightbox-img').src=src;
+    lb.style.display='flex';
+    document.body.style.overflow='hidden';
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').style.display='none';
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+  // Stagger reveals
+  document.querySelectorAll('.brands-grid,.benefits-grid,.testimonials-grid,.showcase-grid').forEach(grid=>{
+    const children=[...grid.children];
+    children.forEach((child,i)=>{
+      child.style.transitionDelay=`${i*0.07}s`;
+      child.classList.add('reveal');
+      observer.observe(child);
+    });
+  });
+</script>
+</body>
+</html>
