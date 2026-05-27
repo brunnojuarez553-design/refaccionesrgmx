@@ -78,16 +78,11 @@
   .section-sub{font-size:1rem;color:var(--white2);max-width:560px;font-weight:300;line-height:1.8}
   .divider{width:60px;height:1px;background:var(--red);margin:2.5rem 0}
 
-  /* MARCAS */
+  /* MARCAS — CÓMO TRABAJAMOS */
   #marcas{background:var(--graphite);border-top:1px solid rgba(139,26,26,.2)}
-  .marcas-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem}
-  .brands-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(139,26,26,.15)}
-  .brand-card{background:var(--graphite);padding:2.5rem 2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;transition:background .3s,transform .3s;cursor:default;text-align:center}
-  .brand-card:hover{background:var(--graphite2)}
-  .brand-icon{width:56px;height:56px;border-radius:50%;border:1px solid rgba(139,26,26,.4);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--red2);letter-spacing:.05em;transition:all .3s}
-  .brand-card:hover .brand-icon{border-color:var(--red2);background:rgba(139,26,26,.1)}
-  .brand-name{font-family:var(--font-display);font-size:.9rem;letter-spacing:.3em;color:var(--white2);text-transform:uppercase;font-weight:500}
-  .brand-sub{font-size:.7rem;color:var(--white3);letter-spacing:.1em}
+  .marcas-how-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  @media(max-width:1024px){.marcas-how-grid{gap:3rem}}
+  @media(max-width:768px){.marcas-how-grid{grid-template-columns:1fr;gap:2.5rem}}
 
   /* CONCIERGE */
   #concierge{background:var(--black)}
@@ -199,7 +194,7 @@
   .qs-stat:hover{border-color:var(--red2);background:var(--graphite2)}
   .qs-stat-num{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--red2);line-height:1;margin-bottom:.3rem}
   .qs-stat-label{font-family:var(--font-display);font-size:.62rem;letter-spacing:.2em;color:var(--white3);text-transform:uppercase}
-  .qs-values{display:flex;flex-direction:column;gap:0;margin-top:2.5rem;border:1px solid rgba(139,26,26,.2)}
+  .qs-values{display:flex;flex-direction:column;gap:0;margin-top:2.5rem}
   .qs-value{display:flex;align-items:flex-start;gap:1.2rem;padding:1.2rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.05);transition:background .3s}
   .qs-value:last-child{border-bottom:none}
   .qs-value:hover{background:rgba(139,26,26,.06)}
@@ -211,6 +206,9 @@
   @media(max-width:768px){
     .qs-visual{display:none}
     .qs-stats{grid-template-columns:1fr 1fr}
+    .qs-values{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(139,26,26,.15);margin-top:2rem}
+    .qs-value{background:var(--graphite);border-bottom:none;padding:1rem 1rem}
+    .qs-value:last-child{border-bottom:none}
   }
 
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}
@@ -297,6 +295,10 @@
     /* FOOTER */
     footer{flex-direction:column;text-align:center;padding:2.5rem 5vw;gap:1.5rem}
     .footer-links{flex-wrap:wrap;justify-content:center;gap:1.2rem}
+
+    /* QUIENES SOMOS MODAL — MOBILE */
+    #qs-modal{padding:.8rem}
+    #qs-panel .qs-content-inner{padding:2rem 1.2rem 2.5rem !important}
 
     /* WHATSAPP */
     .wa-float{bottom:1.2rem;right:1.2rem;width:50px;height:50px}
@@ -540,7 +542,10 @@
 <!-- MODAL QUIENES SOMOS -->
 <div id="qs-modal" style="display:none;position:fixed;inset:0;z-index:200;align-items:center;justify-content:center;padding:1.5rem">
   <!-- Backdrop -->
-  <div id="qs-backdrop" onclick="closeQuienesSomos()" style="position:absolute;inset:0;background:rgba(5,5,5,.85);backdrop-filter:blur(8px)"></div>
+<div id="qs-backdrop" onclick="closeQuienesSomos()" style="position:absolute;inset:0;background:rgba(5,5,5,.85);backdrop-filter:blur(8px)"></div>
+
+  <!-- Botón cerrar — fuera del panel -->
+  <button onclick="closeQuienesSomos()" style="position:absolute;top:1.2rem;right:1.2rem;z-index:10;background:transparent;border:1px solid rgba(255,255,255,.2);cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--white3);font-size:1.3rem;line-height:1;transition:all .2s" onmouseover="this.style.color='var(--white)';this.style.borderColor='rgba(139,26,26,.6)'" onmouseout="this.style.color='var(--white3)';this.style.borderColor='rgba(255,255,255,.2)'">&times;</button>
 
   <!-- Panel -->
   <div id="qs-panel" style="position:relative;z-index:1;width:100%;max-width:1100px;max-height:90vh;overflow-y:auto;background:var(--graphite);border:1px solid rgba(139,26,26,.35);transform:translateY(30px);opacity:0;transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .45s">
@@ -552,18 +557,8 @@
       <div style="position:absolute;inset:0;background:rgba(13,13,13,.4)"></div>
     </div>
 
-    <!-- Marco decorativo -->
-    <div style="position:absolute;inset:1.2rem;z-index:1;border:1px solid rgba(139,26,26,.28);pointer-events:none">
-      <div style="position:absolute;top:-1px;left:2.5rem;right:2.5rem;height:2px;background:linear-gradient(to right,transparent,var(--red),transparent)"></div>
-      <div style="position:absolute;bottom:-1px;left:2.5rem;right:2.5rem;height:2px;background:linear-gradient(to right,transparent,rgba(139,26,26,.4),transparent)"></div>
-
-    </div>
-
-    <!-- Botón cerrar -->
-    <button onclick="closeQuienesSomos()" style="position:sticky;top:0;float:right;z-index:10;background:transparent;border:none;cursor:pointer;padding:1.4rem 1.6rem;color:var(--white3);font-size:1.3rem;line-height:1;transition:color .2s" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--white3)'">&times;</button>
-
     <!-- Contenido del panel -->
-    <div style="position:relative;z-index:2;padding:3.5rem 4rem 4rem;clear:both">
+    <div class="qs-content-inner" style="position:relative;z-index:2;padding:3.5rem 4rem 4rem">
       <div class="qs-grid">
 
         <!-- Visual -->
@@ -682,53 +677,67 @@
   </div>
 </section>
 
-<!-- MARCAS -->
-<section id="marcas">
-  <div class="marcas-header">
-    <div>
-      <div class="section-label reveal">Portafolio de Marcas</div>
-      <h2 class="section-title reveal">Especialistas en<br>alto desempeño</h2>
-    </div>
-    <p class="section-sub reveal" style="max-width:320px;font-size:.85rem">Trabajamos exclusivamente con vehículos de alta gama, exóticos y de colección.</p>
+<!-- CÓMO TRABAJAMOS -->
+<section id="marcas" style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0">
+    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779841318/IMG_6932_dgozo2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(30%) contrast(1.1)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(13,13,13,.97) 50%,rgba(13,13,13,.88) 100%)"></div>
+    <div style="position:absolute;inset:0;background:rgba(13,13,13,.45)"></div>
   </div>
-  <div class="brands-grid reveal">
-    <div class="brand-card">
-      <div class="brand-icon">P</div>
-      <div class="brand-name">Porsche</div>
-      <div class="brand-sub">911 · Cayenne · GT3</div>
+  <div class="marcas-how-grid" style="position:relative;z-index:1">
+    <!-- Copy -->
+    <div class="reveal-left">
+      <div class="section-label">Cómo Trabajamos</div>
+      <h2 class="section-title">Sin importar<br>la marca,<br><span style="color:var(--red2)">lo conseguimos</span></h2>
+      <div class="divider"></div>
+      <p style="color:var(--white2);font-weight:300;line-height:1.9;font-size:.95rem;margin-bottom:1.5rem">
+        Trabajamos con todas las marcas del mercado, desde las más exclusivas hasta las más difíciles de conseguir en México. No tenemos limitaciones de catálogo: si existe la pieza, la localizamos.
+      </p>
+      <p style="color:var(--white3);font-weight:300;line-height:1.9;font-size:.88rem;margin-bottom:2rem">
+        Nuestro proceso es simple: nos mandás el modelo, año y la pieza que necesitás, y nosotros hacemos todo lo demás. Cotización clara, sin vueltas, con tiempo de entrega real.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:.8rem">
+        <div style="display:flex;align-items:center;gap:1rem;font-family:var(--font-display);font-size:.78rem;letter-spacing:.15em;color:var(--white2);text-transform:uppercase">
+          <span style="width:6px;height:6px;background:var(--red2);flex-shrink:0;display:block"></span>Porsche · Ferrari · Lamborghini · McLaren
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;font-family:var(--font-display);font-size:.78rem;letter-spacing:.15em;color:var(--white2);text-transform:uppercase">
+          <span style="width:6px;height:6px;background:var(--red2);flex-shrink:0;display:block"></span>Mercedes AMG · BMW M · Audi RS · Bentley
+        </div>
+        <div style="display:flex;align-items:center;gap:1rem;font-family:var(--font-display);font-size:.78rem;letter-spacing:.15em;color:var(--white2);text-transform:uppercase">
+          <span style="width:6px;height:6px;background:var(--red2);flex-shrink:0;display:block"></span>Clásicos · Piezas descontinuadas · Importación
+        </div>
+      </div>
     </div>
-    <div class="brand-card">
-      <div class="brand-icon">F</div>
-      <div class="brand-name">Ferrari</div>
-      <div class="brand-sub">488 · F8 · Roma</div>
+    <!-- Video -->
+    <div class="reveal-right" style="position:relative">
+      <div onclick="openVideoModal()" style="position:relative;overflow:hidden;border:1px solid rgba(139,26,26,.3);cursor:pointer">
+        <video autoplay muted loop playsinline style="width:100%;display:block;object-fit:cover;max-height:560px">
+          <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779847029/insta_video_91374_rxnifg.mov" type="video/mp4">
+        </video>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.4),transparent 60%);pointer-events:none"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
+          <div style="width:64px;height:64px;border-radius:50%;background:rgba(139,26,26,.85);border:2px solid var(--red2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" style="margin-left:3px"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="brand-card">
-      <div class="brand-icon">L</div>
-      <div class="brand-name">Lamborghini</div>
-      <div class="brand-sub">Huracán · Urus</div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" onclick="closeVideoModal()" style="display:none;position:fixed;inset:0;z-index:300;background:rgba(5,5,5,.93);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1.5rem">
+      <button onclick="closeVideoModal()" style="position:absolute;top:1.5rem;right:1.5rem;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--white3);width:44px;height:44px;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1">&times;</button>
+      <video id="modal-video" controls playsinline onclick="event.stopPropagation()" style="max-width:900px;width:100%;max-height:85vh;display:block;outline:none">
+        <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779847029/insta_video_91374_rxnifg.mov" type="video/mp4">
+      </video>
     </div>
-    <div class="brand-card">
-      <div class="brand-icon">AMG</div>
-      <div class="brand-name">Mercedes AMG</div>
-      <div class="brand-sub">GT · C63 · G63</div>
-    </div>
-    <div class="brand-card">
-      <div class="brand-icon">M</div>
-      <div class="brand-name">BMW M</div>
-      <div class="brand-sub">M3 · M5 · M8</div>
-    </div>
-    <div class="brand-card">
-      <div class="brand-icon">RS</div>
-      <div class="brand-name">Audi RS</div>
-      <div class="brand-sub">RS6 · RS7 · R8</div>
-    </div>
+  </div>
   </div>
 </section>
 
 <!-- CONCIERGE -->
 <section id="concierge" style="position:relative;overflow:hidden">
   <div style="position:absolute;inset:0;z-index:0">
-    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779838435/IMG_6912_g7kgxo.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(30%) contrast(1.1)">
+    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779841322/IMG_6937_szctff.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(30%) contrast(1.1)">
     <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,5,.97) 50%,rgba(5,5,5,.85) 100%)"></div>
     <div style="position:absolute;inset:0;background:rgba(5,5,5,.5)"></div>
   </div>
@@ -888,8 +897,13 @@
 </section>
 
 <!-- ASISTENTE IA -->
-<section id="asistente">
-  <div class="ai-grid">
+<section id="asistente" style="position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;z-index:0">
+    <img src="https://res.cloudinary.com/dvvuwigmy/image/upload/v1779841321/IMG_6936_zraae3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center;filter:grayscale(30%) contrast(1.1)">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,5,.96) 50%,rgba(5,5,5,.85) 100%)"></div>
+    <div style="position:absolute;inset:0;background:rgba(5,5,5,.5)"></div>
+  </div>
+  <div class="ai-grid" style="position:relative;z-index:1">
     <div class="reveal-left">
       <div class="section-label">Tecnología · IA</div>
       <h2 class="section-title">Describe<br>tu Vehículo</h2>
@@ -958,6 +972,7 @@
       </div>
       <button class="btn-submit" onclick="sendToWhatsApp()">Analizar Solicitud</button>
     </div>
+  </div>
   </div>
 </section>
 
@@ -1173,6 +1188,23 @@
     const url=`https://wa.me/521234567890?text=${encodeURIComponent(msg)}`;
     window.open(url,'_blank');
   }
+
+  function openVideoModal(){
+    const modal=document.getElementById('video-modal');
+    const mv=document.getElementById('modal-video');
+    modal.style.display='flex';
+    document.body.style.overflow='hidden';
+    mv.currentTime=0;
+    mv.play();
+  }
+  function closeVideoModal(){
+    const modal=document.getElementById('video-modal');
+    const mv=document.getElementById('modal-video');
+    mv.pause();
+    modal.style.display='none';
+    document.body.style.overflow='';
+  }
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideoModal()});
 
   // Modal Quiénes Somos
   function openQuienesSomos(e){
