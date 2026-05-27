@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Refacciones RG MX | Automotive Concierge</title>
-<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779838143/insta_video_27702_izwxf5.mov" fetchpriority="high">
+<link rel="preload" as="video" href="https://res.cloudinary.com/dvvuwigmy/video/upload/f_mp4,vc_auto,q_auto/v1779838143/insta_video_27702_izwxf5.mov" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
@@ -300,6 +300,10 @@
     /* QUIENES SOMOS MODAL — MOBILE */
     #qs-modal{padding:.8rem}
     #qs-panel .qs-content-inner{padding:2rem 1.2rem 2.5rem !important}
+
+    /* VIDEO THUMB MOBILE */
+    .video-thumb-el{max-height:220px !important}
+    .video-thumb-wrap .faq-icon{width:52px !important;height:52px !important}
 
     /* WHATSAPP */
     .wa-float{bottom:1.2rem;right:1.2rem;width:50px;height:50px}
@@ -664,8 +668,8 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
-    <video autoplay muted loop playsinline preload="auto" class="hero-bg-img" style="object-fit:cover;width:100%;height:100%">
-      <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779838143/insta_video_27702_izwxf5.mov" type="video/mp4">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto" class="hero-bg-img" style="object-fit:cover;width:100%;height:100%">
+      <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/f_mp4,vc_auto,q_auto/v1779838143/insta_video_27702_izwxf5.mov" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -676,7 +680,7 @@
     <p class="hero-sub reveal">Localizamos, cotizamos y gestionamos piezas OEM y performance para deportivos, premium y clásicos con atención absolutamente personalizada.</p>
     <div class="hero-btns reveal">
       <a href="#asistente" class="btn-primary">Solicitar Cotización</a>
-      <a href="https://wa.me/521234567890" class="btn-outline">Hablar con un Especialista</a>
+      <a href="https://wa.me/528124660778" class="btn-outline">Hablar con un Especialista</a>
     </div>
     <div class="hero-badges reveal">
       <span class="hero-badge"><span class="hero-badge-dot"></span>Refacciones Originales</span>
@@ -723,11 +727,11 @@
     </div>
     <!-- Video -->
     <div class="reveal-right" style="position:relative">
-      <div onclick="openVideoModal()" style="position:relative;overflow:hidden;border:1px solid rgba(139,26,26,.3);cursor:pointer">
-        <video preload="metadata" playsinline style="width:100%;display:block;object-fit:cover;max-height:560px">
+      <div onclick="openVideoModal()" class="video-thumb-wrap" style="position:relative;overflow:hidden;border:1px solid rgba(139,26,26,.3);cursor:pointer">
+        <video preload="metadata" playsinline poster="https://res.cloudinary.com/dvvuwigmy/video/upload/so_0,f_jpg,q_auto/v1779847029/insta_video_91374_rxnifg.mov" class="video-thumb-el" style="width:100%;display:block;object-fit:cover;max-height:560px">
           <source src="https://res.cloudinary.com/dvvuwigmy/video/upload/v1779847029/insta_video_91374_rxnifg.mov" type="video/mp4">
         </video>
-        <div style="position:absolute;inset:0;background:rgba(5,5,5,.25);pointer-events:none"></div>
+        <div style="position:absolute;inset:0;background:rgba(5,5,5,.2);pointer-events:none"></div>
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none">
           <div style="width:72px;height:72px;border-radius:50%;background:rgba(139,26,26,.9);border:2px solid var(--red2);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);box-shadow:0 0 30px rgba(139,26,26,.5)">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="white" style="margin-left:4px"><path d="M8 5v14l11-7z"/></svg>
@@ -1084,7 +1088,7 @@
   <p class="cta-sub reveal">Cotiza con especialistas en refacciones premium. Atención personalizada, piezas originales.</p>
   <div class="cta-btns reveal">
     <a href="#asistente" class="btn-primary" style="font-size:.9rem;padding:1rem 3rem">Solicitar Cotización</a>
-    <a href="https://wa.me/521234567890" class="btn-outline" style="font-size:.9rem;padding:1rem 3rem">WhatsApp Directo</a>
+    <a href="https://wa.me/528124660778" class="btn-outline" style="font-size:.9rem;padding:1rem 3rem">WhatsApp Directo</a>
   </div>
 </section>
 
@@ -1096,7 +1100,8 @@
     <a href="#marcas">Marcas</a>
     <a href="#concierge">Concierge</a>
     <a href="#asistente">Cotizar</a>
-    <a href="https://wa.me/521234567890">Contacto</a>
+    <a href="https://wa.me/528124660778">Contacto</a>
+    <a href="mailto:refaccionesrg@outlook.com">refaccionesrg@outlook.com</a>
   </div>
 </footer>
 
@@ -1171,7 +1176,7 @@
     <div class="wa-bubble-text">¿Tu vehículo necesita una pieza difícil de encontrar?</div>
     <div class="wa-bubble-sub">Escríbenos ahora — respondemos en menos de 2 horas.</div>
   </div>
-  <a href="https://wa.me/521234567890" class="wa-btn" aria-label="WhatsApp">
+  <a href="https://wa.me/528124660778" class="wa-btn" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
       <path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.043L.787 23.213l4.284-1.374A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.804 9.804 0 01-5.034-1.387l-.361-.214-3.741 1.201 1.224-3.627-.236-.374A9.818 9.818 0 012.182 12C2.182 6.567 6.567 2.182 12 2.182S21.818 6.567 21.818 12 17.433 21.818 12 21.818z"/>
@@ -1199,6 +1204,17 @@
     mobileMenu.classList.remove('open');
     menuBackdrop.classList.remove('open');
     document.body.style.overflow='';
+  }
+
+  // Hero video — force instant play
+  const heroVideo=document.getElementById('hero-video');
+  if(heroVideo){
+    heroVideo.load();
+    const tryPlay=()=>heroVideo.play().catch(()=>{});
+    tryPlay();
+    heroVideo.addEventListener('canplay',tryPlay,{once:true});
+    document.addEventListener('touchstart',tryPlay,{once:true});
+    document.addEventListener('click',tryPlay,{once:true});
   }
 
   // WhatsApp bubble
@@ -1267,7 +1283,7 @@
     const nombre=document.getElementById('f-nombre').value||'Cliente';
     const pieza=document.getElementById('f-pieza').value||'No especificada';
     const msg=`*SOLICITUD DE COTIZACIÓN - REFACCIONES RG MX*\n\n👤 Nombre: ${nombre}\n🚗 Vehículo: ${marca} ${modelo} ${año}\n🔩 Pieza: ${pieza}\n⚡ Urgencia: ${urgencia}\n\n_Solicitud enviada desde refaccionesrgmx.com_`;
-    const url=`https://wa.me/521234567890?text=${encodeURIComponent(msg)}`;
+    const url=`https://wa.me/528124660778?text=${encodeURIComponent(msg)}`;
     window.open(url,'_blank');
   }
 
